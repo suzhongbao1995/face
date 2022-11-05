@@ -1,0 +1,210 @@
+{
+  //  ESLint默认使用Espree作为其解析器
+  //  此项是用来指定eslint解析器的，解析器必须符合规则
+  //  官网没有对其他解析器进行说明，但是有提示，使用其他解析器的时候，注意确认它是不是和 ESLint 兼容。
+  //  至于咋确认。。你指定一下这个解析器，看看 eslint 会不会对你想检查的代码正常报错，就行了。
+  // 以下解析器与 ESLint 兼容：
+  //  1、Esprima
+  //  2、Babel-ESLint：一个对Babel解析器的包装，使其能够与 ESLint 兼容（如果你想使用一些 先进的语法，比如es6789...）。
+  //  3、@typescript-eslint/parser：将 TypeScript 转换成与 estree 兼容的形式，以便在ESLint中使用（如果你想使用typescript）。
+  "parser": "@typescript-eslint/parser",
+  //  解析器选项，与parser同时使用
+  //  在使用自定义解析器时，
+  //  为了让 ESLint 在处理非 ECMAScript 5 特性时正常工作，
+  //  配置属性 parserOptions 仍然是必须的
+  //  解析器会被传入parserOptions，
+  //  但是不一定会使用它们来决定功能特性的开关。
+  "parserOptions": {
+    // 默认是 script。模块化的代码要写：module（当前最常见做法，如果你的代码是 ECMAScript 模块）
+    "sourceType": "module",
+    //emcaVersion用来指定你想要使用的 ECMAScript 版本
+    //注意，使用对于 ES6 语法，使用"ecmaVersion": 6时，不自动启用es6全局变量
+    //自动启用es6语法和全局变量，需要搭配env使用"env": { "es6": true }
+    "ecmaVersion": 6,
+    //想使用额外的语言特性，一个配置对象，可配置项如下（value 均为 true/false）
+    "ecmaFeatures": {
+      "jsx": true,//启用jsx
+      "globalReturn":true, //在全局作用域下使用return语句
+      "impliedStrict":true, //启用全局strict mode (如果 ecmaVersion 是 5 或更高)
+      "experimentalObjectRestSpread": false //启用实验性的object rest/spread properties支持(不建议开启)
+    },
+    "useJSXTextNode": true
+  },
+  //  要在配置文件中指定环境，请使用env键并通过将每个设置为来指定要启用的环境true。
+  "env": {
+    "browser": true, //开启浏览器全局变量
+    "es6": true, //启用除模块以外的所有ECMAScript 6功能（这会自动将ecmaVersion解析器选项设置为6）
+    "node": true //Node.js全局变量和Node.js作用域
+  },
+  // 此项是用来配置标准的js风格，就是说写代码的时候要规范的写
+  // 指定配置的字符串（配置文件的路径，可共享配置的名称eslint:recommended或eslint:all）。
+  // 字符串数组：每个其他配置都扩展了前面的配置
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  // 此项是用来提供插件的，插件名称省略了eslint-plugin-
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  /*
+  * "off" 或 0 - 关闭规则
+  * "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+  * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+  */
+  "rules": {
+    "prettier/prettier": 2,
+    "semi": 2, // 行末分号，根据编码习惯选择添加，这里配置的加分号
+    "no-console": 0, // 禁用 console
+    "max-len": 0, // 强制一行的最大长度，可以是[1, 200]限制长度
+    "max-lines": 0, // 强制最大行数
+    "max-params": 0, // 强制 function 定义中最多允许的参数数量，可以用[1, 7]限制数量
+    "max-statements": 0, // 强制 function 块最多允许的的语句数量，可以用[1, 200]限制数量
+    "max-statements-per-line": 0, // 强制每一行中所允许的最大语句数量
+    "space-before-function-paren": [0,"always"], // 强制在 function的左括号之前使用一致的空格
+    // 禁止出现未使用过的表达式
+    "no-unused-expressions": [
+      0,
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "arrow-body-style": [0, "never"], // 要求箭头函数体使用大括号
+    "func-names": 0, // 强制使用命名的 function 表达式
+    "prefer-const": 0, // 要求使用 const 声明那些声明后不再被修改的变量
+    "no-extend-native": 2, // 禁止扩展原生类型
+    "no-param-reassign": 0, // 不允许对 function 的参数进行重新赋值
+    "no-restricted-syntax": 0, // 禁止使用特定的语法
+    "no-eval": 0, // 禁用 eval()，eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。
+    "no-continue": 0, // 禁用 continue 语句
+    "global-require": 1, // 要求 require() 出现在顶层模块作用域中
+    "camelcase": 2, //强制驼峰法命名
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    // react
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-first-prop-new-line": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "react/no-string-refs": 0,
+    "react/no-find-dom-node": 0,
+    "react/display-name": 0, //防止在React组件定义中丢失displayName
+    "react/forbid-prop-types": [2, {"forbid": ["any"]}], //禁止某些propTypes
+    "react/jsx-boolean-value": 2, //在JSX中强制布尔属性符号
+    "react/jsx-closing-bracket-location": 1, //在JSX中验证右括号位置
+    "react/jsx-curly-spacing": [2, {"when": "never", "children": true}], //在JSX属性和表达式中加强或禁止大括号内的空格。
+    "react/jsx-indent-props": [2, 4], //验证JSX中的props缩进
+    "react/jsx-key": 2, //在数组或迭代器中验证JSX具有key属性
+    "react/jsx-no-bind": 0, //JSX中不允许使用箭头函数和bind
+    "react/jsx-no-duplicate-props": 2, //防止在JSX中重复的props
+    "react/jsx-no-literals": 0, //防止使用未包装的JSX字符串
+    "react/jsx-no-undef": 1, //在JSX中禁止未声明的变量
+    "react/jsx-pascal-case": 0, //为用户定义的JSX组件强制使用PascalCase
+    "react/jsx-sort-props": 2, //强化props按字母排序
+    "react/jsx-uses-react": 1, //防止反应被错误地标记为未使用
+    "react/jsx-uses-vars": 2, //防止在JSX中使用的变量被错误地标记为未使用
+    "react/no-danger": 0, //防止使用危险的JSX属性
+    "react/no-did-mount-set-state": 0, //防止在componentDidMount中使用setState
+    "react/no-did-update-set-state": 1, //防止在componentDidUpdate中使用setState
+    "react/no-direct-mutation-state": 2, //防止this.state的直接变异
+    "react/no-multi-comp": 2, //防止每个文件有多个组件定义
+    "react/no-set-state": 0, //防止使用setState
+    "react/no-unknown-property": 2, //防止使用未知的DOM属性
+    "react/prefer-es6-class": 2, //为React组件强制执行ES5或ES6类
+    "react/prop-types": 0, //防止在React组件定义中丢失props验证
+    "react/react-in-jsx-scope": 2, //使用JSX时防止丢失React
+    "react/self-closing-comp": 0, //防止没有children的组件的额外结束标签
+    "react/sort-comp": 2, //强制组件方法顺序
+    "react/no-array-index-key": 0, //防止在数组中遍历中使用数组key做索引
+    "react/no-deprecated": 1, //不使用弃用的方法
+    "react/jsx-equals-spacing": 2, //在JSX属性中强制或禁止等号周围的空格
+    "no-extra-boolean-cast": 0, //禁止不必要的bool转换
+    "no-unreachable": 1, //不能有无法执行的代码
+    "no-mixed-spaces-and-tabs": 0, //禁止混用tab和空格
+    "prefer-arrow-callback": 0, //比较喜欢箭头回调
+    "arrow-parens": 0, //箭头函数用小括号括起来
+    "arrow-spacing": 0, //=>的前/后括号
+    "jsx-a11y/href-no-hash": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "quotes": [2, "single"], //单引号
+    "no-debugger": 2, //禁用debugger
+    "no-var": 2, //对var警告
+    "no-irregular-whitespace": 0, //不规则的空白不允许
+    "no-trailing-spaces": 1, //一行结束后面有空格就发出警告
+    "eol-last": 0, //文件以单一的换行符结束
+    "no-underscore-dangle": 0, //标识符不能以_开头或结尾
+    "no-alert": 2, //禁止使用alert confirm prompt
+    "no-lone-blocks": 0, //禁止不必要的嵌套块
+    "no-class-assign": 2, //禁止给类赋值
+    "no-cond-assign": 2, //禁止在条件表达式中使用赋值语句
+    "no-const-assign": 2, //禁止修改const声明的变量
+    "no-delete-var": 2, //不能对var声明的变量使用delete操作符
+    "no-dupe-keys": 2, //在创建对象字面量时不允许键重复
+    "no-duplicate-case": 2, //switch中的case标签不能重复
+    "no-dupe-args": 2, //函数参数不能重复
+    "no-empty": 2, //块语句中的内容不能为空
+    "no-func-assign": 2, //禁止重复的函数声明
+    "no-invalid-this": 0, //禁止无效的this，只能用在构造器，类，对象字面量
+    "no-redeclare": 2, //禁止重复声明变量
+    "no-spaced-func": 2, //函数调用时 函数名与()之间不能有空格
+    "no-this-before-super": 0, //在调用super()之前不能使用this或super
+    "no-undef": 2, //不能有未定义的变量
+    "no-use-before-define": 0, //未定义前不能使用
+    "jsx-quotes": [2, "prefer-double"], //强制在JSX属性（jsx-quotes）中一致使用双引号
+    "@typescript-eslint/no-unused-vars": [2],
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/camelcase": ["off", {"properties":"always"}], //强制驼峰法命名（ts）
+    "@typescript-eslint/no-use-before-define": 0
+  },
+  /*
+  *ESLint支持将共享设置添加到配置文件中。
+  *您可以将settings对象添加到ESLint配置文件，并将其提供给将要执行的每个规则。
+  *如果您要添加自定义规则，并希望它们能够访问相同的信息并且易于配置，这可能会很有用。
+  */
+  "settings": {
+    "import/resolver": "node",
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+
+//环境定义了预定义的全局变量。可用环境为：
+//browser -浏览器全局变量。
+//node -Node.js全局变量和Node.js作用域。
+//commonjs -CommonJS全局变量和CommonJS作用域（将其用于使用Browserify / WebPack的仅浏览器代码）。
+//shared-node-browser -Node.js和浏览器通用的全局变量。
+//es6-启用除模块以外的所有ECMAScript 6功能（这会自动将ecmaVersion解析器选项设置为6）。
+//es2017-添加所有ECMAScript 2017全局变量并自动将ecmaVersion解析器选项设置为8。
+//es2020-添加所有ECMAScript 2020全局变量并将ecmaVersion解析器选项自动设置为11。
+//worker -网络工作者的全局变量。
+//amd- 根据amd规范定义require()和define()作为全局变量。
+//mocha -添加所有Mocha测试全局变量。
+//jasmine -添加了版本1.3和2.0的所有Jasmine测试全局变量。
+//jest -开玩笑的全局变量。
+//phantomjs -PhantomJS全局变量。
+//protractor -量角器全局变量。
+//qunit -QUnit全局变量。
+//jquery -jQuery全局变量。
+//prototypejs -Prototype.js全局变量。
+//shelljs -ShellJS全局变量。
+//meteor -流星全局变量。
+//mongo -MongoDB全局变量。
+//applescript -AppleScript全局变量。
+//nashorn -Java 8 Nashorn全局变量。
+//serviceworker -服务人员全局变量。
+//atomtest -Atom测试助手全局变量。
+//embertest -灰烬测试助手全局变量。
+//webextensions -WebExtensions全局变量。
+//greasemonkey -GreaseMonkey全球。
+//这些环境不是互斥的，因此您一次可以定义多个环境。
