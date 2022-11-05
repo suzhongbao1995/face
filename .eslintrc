@@ -159,6 +159,7 @@
     "no-undef": 2, //不能有未定义的变量
     "no-use-before-define": 0, //未定义前不能使用
     "jsx-quotes": [2, "prefer-double"], //强制在JSX属性（jsx-quotes）中一致使用双引号
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-unused-vars": [2],
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-empty-interface": 0,

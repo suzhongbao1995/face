@@ -13,15 +13,15 @@ const devConfig = {
     hot: true,
     historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, '../public')
-    }
+      directory: path.resolve(__dirname, '../public'),
+    },
   },
   plugins: [
     new EslintWebpackPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
-      exclude: 'node_modules'
-    })
-  ]
+      exclude: ['node_modules'],
+    }),
+  ],
 };
 
 module.exports = merge(baseConfig, devConfig);

@@ -12,28 +12,28 @@ module.exports = {
     filename: 'static/js/[name].[chunkhash].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
-    publicPath: '/'
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
       inject: true,
-      favicon: path.resolve(__dirname, '../public/favicon.ico')
+      favicon: path.resolve(__dirname, '../public/favicon.ico'),
     }),
     /**
-    * 定义环境变量
-    */
+     * 定义环境变量
+     */
     new DefinePlugin({
-      __NODE_ENV__: JSON.stringify(process.env.NODE_ENV)
-    })
+      __NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(css|less)$/,
@@ -51,9 +51,9 @@ module.exports = {
                   }
                   return true;
                 },
-                localIdentName: '[name]-[local]-[hash:base64:5]'
-              }
-            }
+                localIdentName: '[name]-[local]-[hash:base64:5]',
+              },
+            },
           },
           'postcss-loader',
           {
@@ -61,22 +61,34 @@ module.exports = {
             options: {
               lessOptions: {
                 modifyVars: {
-                  'primary-color': '#f00',
+                  'primary-color': '#1DA57A',
                   'link-color': '#1DA57A',
-                  'border-radius-base': '2px'
+                  'border-radius-base': '2px',
                 },
-                javascriptEnabled: true
-              }
-            }
-          }
+                javascriptEnabled: true,
+              },
+            },
+          },
         ],
         include: [
           path.resolve(__dirname, '../src'),
           path.resolve(__dirname, '../node_modules/antd'),
-          path.resolve(__dirname, '../node_modules/@ant-design')
-        ]
-      }
-    ]
+          path.resolve(__dirname, '../node_modules/@ant-design'),
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg|)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
+        generator: {
+          filename: 'images/[name]-[hash:10][ext]',
+        },
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
@@ -90,7 +102,7 @@ module.exports = {
       '@services': path.resolve(__dirname, '../src/services'),
       '@pages': path.resolve(__dirname, '../src/pages'),
       '@utils': path.resolve(__dirname, '../src/utils'),
-      '@models': path.resolve(__dirname, '../src/models')
-    }
-  }
+      '@models': path.resolve(__dirname, '../src/models'),
+    },
+  },
 };
