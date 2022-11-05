@@ -3,6 +3,7 @@ const { DefinePlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
+const theme = require('../config/theme');
 
 const path = require('path');
 
@@ -60,11 +61,7 @@ module.exports = {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                modifyVars: {
-                  'primary-color': '#1DA57A',
-                  'link-color': '#1DA57A',
-                  'border-radius-base': '2px',
-                },
+                modifyVars: theme,
                 javascriptEnabled: true,
               },
             },
@@ -96,7 +93,6 @@ module.exports = {
       '@': path.resolve(__dirname, '../src'),
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@components': path.resolve(__dirname, '../src/components'),
-      '@config': path.resolve(__dirname, '../src/config'),
       '@constants': path.resolve(__dirname, '../src/constants'),
       '@routers': path.resolve(__dirname, '../src/routers'),
       '@services': path.resolve(__dirname, '../src/services'),
