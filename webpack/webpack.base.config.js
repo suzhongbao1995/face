@@ -94,6 +94,7 @@ module.exports = {
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@components': path.resolve(__dirname, '../src/components'),
       '@constants': path.resolve(__dirname, '../src/constants'),
+      '@layout': path.resolve(__dirname, '../src/layout'),
       '@routers': path.resolve(__dirname, '../src/routers'),
       '@services': path.resolve(__dirname, '../src/services'),
       '@pages': path.resolve(__dirname, '../src/pages'),

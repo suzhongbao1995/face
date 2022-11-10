@@ -6,7 +6,6 @@ import style from './index.less';
 const Home = () => {
   return (
     <div className={style.red}>
-      <div>2222</div>
       <Button type="primary">Primary Button</Button>
     </div>
   );
