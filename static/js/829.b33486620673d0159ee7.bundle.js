@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkface=self.webpackChunkface||[]).push([[829],{56829:function(e,n,a){a.r(n);var c=a(20644),t=a.n(c);n.default=function(){return t().createElement("div",null,"dataScreen")}}}]);
