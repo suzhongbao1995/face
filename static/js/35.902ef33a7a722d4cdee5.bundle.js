@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkface=self.webpackChunkface||[]).push([[35],{78035:function(e,n,u){u.r(n);var t=u(20644),a=u.n(t);n.default=function(){return a().createElement("div",null,"about")}}}]);
