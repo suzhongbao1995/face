@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkface=self.webpackChunkface||[]).push([[205,859],{70205:function(e,t,r){r.r(t),r(65739);var a=r(8573),n=r(67294),u=r(83859);t.default=function(){return n.createElement("div",{className:u.default.red},n.createElement(a.Z,{type:"primary"},"Primary Button"))}},83859:function(e,t,r){r.r(t),t.default={red:"index-red-t3e9R"}}}]);

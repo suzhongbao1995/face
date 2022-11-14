@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkface=self.webpackChunkface||[]).push([[859],{83859:function(e,c,f){f.r(c),c.default={red:"index-red-t3e9R"}}}]);
