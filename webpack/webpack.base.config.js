@@ -10,14 +10,17 @@ const path = require('path');
 module.exports = {
   entry: path.resolve(__dirname, '../src/main.tsx'),
   output: {
-    filename: 'static/js/[name].[chunkhash].bundle.js',
+    filename: 'static/js/[name].[chunkhash:5].bundle.js',
+    chunkFilename: 'static/js/[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
-    publicPath: '/',
+    publicPath: './',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
+      title: 'Face Admin',
+      template: path.resolve(__dirname, '../index.html'),
+      filename: 'index.html',
       inject: true,
       favicon: path.resolve(__dirname, '../public/favicon.ico'),
     }),
@@ -35,6 +38,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+        exclude: /node_modules/,
       },
       {
         test: /\.(css|less)$/,

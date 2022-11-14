@@ -23,7 +23,7 @@ export const excludeMenuRouters: Pick<Routers, 'path' | 'element'>[] = [
   },
   {
     path: 'login',
-    element: lazyLoad('login'),
+    element: lazyLoad(React.lazy(() => import(/* webpackChunkName: "login" */ '@pages/login'))),
   },
 ];
 
@@ -35,7 +35,11 @@ export const menuRouters: Routers[] = [
       title: '首页',
       label: '首页',
     },
-    element: <BasicLayout>{lazyLoad('home')}</BasicLayout>,
+    element: (
+      <BasicLayout>
+        {lazyLoad(React.lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home')))}
+      </BasicLayout>
+    ),
   },
   {
     path: '/dataScreen',
@@ -44,7 +48,9 @@ export const menuRouters: Routers[] = [
       title: '数据可视化',
       label: '数据可视化',
     },
-    element: lazyLoad('dataScreen'),
+    element: lazyLoad(
+      React.lazy(() => import(/* webpackChunkName: "dataScreen" */ '@/pages/dataScreen'))
+    ),
   },
   {
     meta: {
@@ -69,7 +75,9 @@ export const menuRouters: Routers[] = [
               title: '菜单1-1',
               label: '菜单1-1',
             },
-            element: lazyLoad('home'),
+            element: lazyLoad(
+              React.lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home'))
+            ),
           },
         ],
       },
@@ -80,7 +88,7 @@ export const menuRouters: Routers[] = [
           title: '菜单2',
           label: '菜单2',
         },
-        element: lazyLoad('home'),
+        element: lazyLoad(React.lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home'))),
       },
       {
         path: '/menu/menu3',
@@ -89,7 +97,7 @@ export const menuRouters: Routers[] = [
           title: '菜单3',
           label: '菜单3',
         },
-        element: lazyLoad('home'),
+        element: lazyLoad(React.lazy(() => import(/* webpackChunkName: "home" */ '@/pages/home'))),
       },
     ],
   },

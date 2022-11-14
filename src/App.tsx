@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import Routes from '@/routers';
 
 // 根组件
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes />
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default App;

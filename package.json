@@ -2,11 +2,15 @@
   "name": "face",
   "version": "1.0.0",
   "description": "react + typescript + antd",
+  "homepage": "https://suzhongbao1995.github.io/face",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c webpack/webpack.dev.config.js",
     "build": "cross-env NODE_EVN=production BASE_ENV=production webpack --config webpack/webpack.prod.config.js",
     "analy": "cross-env NODE_ENV=production BASE_ENV=production webpack --config webpack/webpack.analy.config.js",
+    "http-server": "npx http-server ./dist -p 4000",
+    "preDeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx src"
   },
   "author": "suzhongbao",
@@ -18,7 +22,6 @@
     "core-js": "^3.26.0",
     "dva-core-ts": "^2.0.7",
     "dva-loading-ts": "^3.0.23",
-    "immer": "^9.0.16",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,12 +55,12 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "less-loader": "^11.1.0",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.18",
     "postcss-loader": "^7.0.1",
-    "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
@@ -65,7 +68,8 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "webpackbar": "^5.0.2"
   },
   "browserslist": [
     "> 1%",
