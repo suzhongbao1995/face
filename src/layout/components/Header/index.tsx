@@ -5,7 +5,7 @@ import HeaderTitle from './components/headerTitle';
 const Head = () => {
   return (
     <React.Fragment>
-      <HeaderTitle></HeaderTitle>
+      <HeaderTitle />
     </React.Fragment>
   );
 };

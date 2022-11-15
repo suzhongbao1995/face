@@ -14,7 +14,7 @@ module.exports = {
     chunkFilename: 'static/js/[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
-    publicPath: './',
+    publicPath: isDev ? '/' : './',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -98,6 +98,7 @@ module.exports = {
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@components': path.resolve(__dirname, '../src/components'),
       '@constants': path.resolve(__dirname, '../src/constants'),
+      '@hooks': path.resolve(__dirname, '../src/hooks'),
       '@layout': path.resolve(__dirname, '../src/layout'),
       '@routers': path.resolve(__dirname, '../src/routers'),
       '@services': path.resolve(__dirname, '../src/services'),

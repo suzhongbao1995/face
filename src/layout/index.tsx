@@ -19,7 +19,7 @@ const BasicLayout = ({ children }: React.PropsWithChildren<any>) => {
         <SlideMenu />
       </Sider>
       <L>
-        <Header className={classNames(style.layoutBackground)}>
+        <Header className={classNames(style.layoutBackground, style.layoutHeader)}>
           <Head />
         </Header>
         <Content className={classNames([style.layoutBackground, style.content])}>
