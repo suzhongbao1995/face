@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackBar = require('webpackbar');
 
 const isDev = process.env.NODE_ENV === 'development';
 const theme = require('../config/theme');
@@ -16,6 +17,9 @@ module.exports = {
     clean: true,
     publicPath: isDev ? '/' : './',
   },
+  cache: {
+    type: 'filesystem',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Face Admin',
@@ -24,11 +28,18 @@ module.exports = {
       inject: true,
       favicon: path.resolve(__dirname, '../public/favicon.ico'),
     }),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:5].css',
+      chunkFilename: 'static/css/[name].chunk.css',
+    }),
     /**
      * 定义环境变量
      */
     new DefinePlugin({
       __NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
+    }),
+    new WebpackBar({
+      color: '#85d', // 默认green，进度条颜色支持HEX
     }),
   ],
   module: {
@@ -107,4 +118,5 @@ module.exports = {
       '@models': path.resolve(__dirname, '../src/models'),
     },
   },
+  stats: 'errors-only',
 };

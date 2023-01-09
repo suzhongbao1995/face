@@ -7,6 +7,8 @@ const { merge } = require('webpack-merge');
 
 const prodConfig = require('./webpack.prod.config');
 
-module.exports = merge(prodConfig, {
-  plugins: [new BundleAnalyzerPlugin()],
-});
+module.exports = smp.wrap(
+  merge(prodConfig, {
+    plugins: [new BundleAnalyzerPlugin()],
+  })
+);
